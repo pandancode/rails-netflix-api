@@ -22,6 +22,11 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# FRIENDLY ID TO CHANGE ID IN URL (https://github.com/norman/friendly_id)
+gem 'friendly_id', '~> 5.4', '>= 5.4.2'
+gem 'pundit', '~> 2.2'
+
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
