@@ -20,7 +20,12 @@ gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
+
+# ! ADDED BY AMIN
+#allows to use json web tokens (jwt) in your app
+gem 'jwt'
+# gem "faker";
 
 # FRIENDLY ID TO CHANGE ID IN URL (https://github.com/norman/friendly_id)
 gem 'friendly_id', '~> 5.4', '>= 5.4.2'
