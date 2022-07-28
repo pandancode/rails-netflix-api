@@ -1,4 +1,17 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
+
+require 'simplecov'
+SimpleCov.start 'rails' do
+  add_filter '/bin/'
+  add_filter '/db/'
+  add_filter '/spec/' # for rspec
+  add_filter "app/jobs/application_job.rb"
+  add_filter "app/channels/application_cable/channel.rb"
+  add_filter "app/channels/application_cable/connection.rb"
+  add_filter "app/controllers/users/"
+  # add_filter '/test/' # for minitest
+end
+
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
@@ -6,7 +19,12 @@ require_relative '../config/environment'
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
+require 'capybara/rspec'
+require 'factory_bot_rails'
+require 'support/database_cleaner'
 
+
+include ApplicationHelper
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -20,9 +38,11 @@ require 'rspec/rails'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
 
-# Checks for pending migrations and applies them before tests are run.
+# All files inside spec/support are loaded automatically by rspec with the line below
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
+
+# Checks for pending migrations an applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
 begin
   ActiveRecord::Migration.maintain_test_schema!
@@ -31,13 +51,15 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  # TURN THE LINE BELOW TO FALSE IN ORDER TO BE ABLE TO USE DB CLEANER GEM
+  config.use_transactional_fixtures = false
 
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
@@ -61,4 +83,23 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  # Includes factory bot inside our tests.
+  config.include FactoryBot::Syntax::Methods
+
+  # Includes Capybara DSL
+  config.include Capybara::DSL
+
+
+  # config.include Devise::Test::ControllerHelpers
+
+  # Allow to use in buitd methods such as "log_as(user)"
+  # With line below (Config for Rails > 5.x) integration tests work properly
+  config.include Devise::Test::IntegrationHelpers
+
+  # https://stackoverflow.com/questions/27284657/undefined-method-env-for-nilnilclass-in-setup-controller-for-warden-error
+  # With the line below enabled (configuration for Rails < 5.x) --> Console error:  Failure/Error: @request.env['action_controller.instance'] = @controller
+  # "undefined method `env' for nil:NilClass"
+  # rather than config.include Devise::Test::ControllerHelpers
+  # This line was used prior to rails 5.X.X. Now replaced by config.include Devise::Test::IntegrationHelpers
 end
