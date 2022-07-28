@@ -1,6 +1,6 @@
 class Api::V1::MoviesController < ActionController::API
-  # before_action :authenticate_user!, only: [ :index ]
-  skip_before_action :authenticate_user!, only: [ :index ]
+  # ! Hash out the below if you don't want to authenticate
+  before_action :authenticate_user!, only: [ :index ]
 
   def index
     if user_signed_in?
