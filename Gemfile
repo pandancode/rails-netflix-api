@@ -58,6 +58,10 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'rspec-rails', '~> 5.1'
   gem 'capybara', '>= 3.36'
+  gem 'rails-controller-testing'
+  gem 'database_cleaner', '~> 2.0', '>= 2.0.1'
+  gem 'simplecov', require: false
+
   gem 'selenium-webdriver', '>= 4.0.0.rc1'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
