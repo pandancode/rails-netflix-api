@@ -24,7 +24,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 # ! ADDED BY AMIN
 #allows to use json web tokens (jwt) in your app
-gem 'jwt'
+# gem 'jwt'
+gem 'devise-jwt'
 # gem "faker";
 
 # FRIENDLY ID TO CHANGE ID IN URL (https://github.com/norman/friendly_id)
