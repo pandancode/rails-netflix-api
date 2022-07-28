@@ -1,4 +1,9 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  # ! Amin, the below explicitly (and for only, ONLY) disables the CSRF token for the post / create user method. To be discussed and
+  # ! reviewed as per second answer from the below
+  # ! https://stackoverflow.com/questions/35181340/rails-cant-verify-csrf-token-authenticity-when-making-a-post-request
+  skip_before_action :verify_authenticity_token, only: [:create]
+
   respond_to :json
 
   private

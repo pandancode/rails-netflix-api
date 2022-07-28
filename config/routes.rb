@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   resources :movies
-  devise_for :users
   root to: "pages#home"
 
   namespace :api do
@@ -8,5 +7,12 @@ Rails.application.routes.draw do
       resources :movies
     end
   end
+
+  devise_for :users,
+            controllers: {
+                sessions: 'users/sessions',
+                registrations: 'users/registrations'
+            }
+  get '/member-data', to: 'members#show'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
