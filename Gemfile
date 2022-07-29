@@ -24,13 +24,12 @@ gem 'bcrypt', '~> 3.1.7'
 
 # ! ADDED BY AMIN
 #allows to use json web tokens (jwt) in your app
-gem 'jwt';
-# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-gem 'rack-cors'
+# gem 'rack-cors'
 # gem "faker";
 
 # ! ADDED BY YILUN
 # FRIENDLY ID TO CHANGE ID IN URL (https://github.com/norman/friendly_id)
+gem 'devise-jwt'
 gem 'friendly_id', '~> 5.4', '>= 5.4.2'
 gem 'pundit', '~> 2.2'
 
