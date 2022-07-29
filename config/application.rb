@@ -23,5 +23,12 @@ module RailsDefaultProject
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # ! API ONLY
+    config.api_only = true
+
+    # ! WAY TO DEBUG
+    # config.debug_exception_response_format = :default
+    config.debug_exception_response_format = :api
   end
 end
