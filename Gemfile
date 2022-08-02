@@ -24,7 +24,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 # ! ADDED BY AMIN
 #allows to use json web tokens (jwt) in your app
-# gem 'rack-cors'
+gem 'rack-cors'
 # gem "faker";
 
 # ! ADDED BY YILUN
