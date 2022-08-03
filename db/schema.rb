@@ -22,9 +22,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_28_195507) do
 
   create_table "movies", force: :cascade do |t|
     t.string "title"
-    t.text "synopsis"
+    t.string "full_title"
+    t.string "year"
+    t.string "rank"
+    t.string "rank_up_down"
     t.text "img_url"
-    t.text "trailer_url"
+    t.string "crew"
+    t.string "imdb_rating"
+    t.string "imdb_rating_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
