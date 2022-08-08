@@ -4,11 +4,8 @@ class Api::V1::MoviesController < ActionController::API
   # before_action :verify_authenticity_token, only: [ :index ]
 
   def index
+    # p request.headers["Authorization"].split(" ")[1]
     render json: Movie.all
-    # if user_signed_in?
-    # else
-    #   render json: {}, status: 401
-    # end
   end
 
 end
