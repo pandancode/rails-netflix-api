@@ -21,15 +21,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_28_195507) do
   end
 
   create_table "movies", force: :cascade do |t|
+    t.boolean "adult"
+    t.text "backdrop_path"
+    t.integer "genre_ids"
+    t.string "original_language"
+    t.string "original_title"
+    t.text "synopsis"
+    t.float "popularity"
+    t.text "poster_path"
+    t.string "release_date"
     t.string "title"
-    t.string "full_title"
-    t.string "year"
-    t.string "rank"
-    t.string "rank_up_down"
-    t.text "img_url"
-    t.string "crew"
-    t.string "imdb_rating"
-    t.string "imdb_rating_count"
+    t.boolean "video"
+    t.float "vote_average"
+    t.integer "vote_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
