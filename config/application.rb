@@ -16,6 +16,15 @@ module RailsDefaultProject
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
+    # # ! This configures session_options for use below
+    # config.session_store :cookie_store, key: "_interslice_session"
+
+    # # ! Reuquired for all session managment (regardless os sessions_store)
+    # config.middleware.use ActionDispatch::Cookies
+
+    # # ! Below we tell to the middle ware to use session store with session options
+    # config.middleware.use config.session_store config.session_options
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
