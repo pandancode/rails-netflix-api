@@ -1886,10 +1886,13 @@ movies = [
     }
 ]
 
+p "Creating movies"
 
 movies.each do |movie|
   Movie.create(movie)
 end
+
+p "Finished creating movies"
 
 
 
