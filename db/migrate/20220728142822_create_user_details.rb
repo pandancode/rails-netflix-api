@@ -5,7 +5,6 @@ class CreateUserDetails < ActiveRecord::Migration[7.0]
       t.string :first_name
       t.string :middle_names
       t.string :last_name
-      t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end

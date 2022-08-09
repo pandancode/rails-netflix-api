@@ -6,5 +6,6 @@ class User < ApplicationRecord
          :jwt_authenticatable,
          jwt_revocation_strategy: JwtDenylist
 
-  has_one :favourite
+  has_many :favorites, dependent: :destroy
+  has_many :movies, through: :favorites
 end

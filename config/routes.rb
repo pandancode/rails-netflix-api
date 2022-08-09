@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :movies
-      resources :favourites, except: [:index ]
+      resources :favorites, except: [:index ]
     end
   end
 

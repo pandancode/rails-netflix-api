@@ -1,3 +1,3 @@
 class Movie < ApplicationRecord
-  has_many :favourite
+  has_many :favorites
 end

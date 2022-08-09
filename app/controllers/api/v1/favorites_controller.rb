@@ -1,4 +1,4 @@
-class Api::V1::FavouritesController < ActionController
+class Api::V1::FavoritesController < ActionController
   before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :delete ]
 
 

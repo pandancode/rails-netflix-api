@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :favourite do
+  factory :favorite do
     user { nil }
     movies { nil }
   end
