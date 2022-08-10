@@ -2,12 +2,13 @@
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 
 
+# ! CREATING USERS
 p "Creating users"
 User.create(email: "test@test.com", password: "qqqqqq")
 User.create(email: "aminm-34@hotmail.fr", password: "qqqqqq")
 p "Finished creating users"
 
-
+# ! POPULAR MOVIES PULLED FROM THE TMDB DATABASE
 movies = [
     {
         "adult": false,
@@ -1887,14 +1888,29 @@ movies = [
     }
 ]
 
+# ! CREATING MOVIES
 p "Creating movies"
-
 movies.each do |movie|
   Movie.create(movie)
 end
-
 p "Finished creating movies"
 
+
+# ! CREATING WATCHLISTS
+p "Creating Watchlist 'horror' for user 1"
+Watchlist.create(user_id: 1, name: :"Horror")
+
+p "Creating Watchlist 'action' for user 1"
+Watchlist.create(user_id: 1, name: :"Action")
+
+
+# ! CREATING ENTRIES FOR THE WATCHLISTS
+p "Creating 2 entries for the watchlist 'Horror' (User1)"
+WatchlistMovie.create(watchlist_id: 1, movie_id: 1)
+WatchlistMovie.create(watchlist_id: 1, movie_id: 5)
+
+p "Creating 1 entries for the watchlist 'Horror' (User1)"
+WatchlistMovie.create(watchlist_id: 1, movie_id: 10)
 
 
 # const MOVIES_LIST = [
