@@ -1909,8 +1909,8 @@ p "Creating 2 entries for the watchlist 'Horror' (User1)"
 WatchlistMovie.create(watchlist_id: 1, movie_id: 1)
 WatchlistMovie.create(watchlist_id: 1, movie_id: 5)
 
-p "Creating 1 entries for the watchlist 'Horror' (User1)"
-WatchlistMovie.create(watchlist_id: 1, movie_id: 10)
+p "Creating 1 entries for the watchlist 'Action' (User1)"
+WatchlistMovie.create(watchlist_id: 2, movie_id: 10)
 
 
 # const MOVIES_LIST = [
