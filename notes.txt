@@ -1,0 +1,17 @@
+--> WAY TO READ THE HEADERS SENT FROM CLIENT
+request.headers["Authorization"]
+
+
+--> READ THE CONTENT OF THE BODY SEND FROM CLIENT
+request.raw_post
+
+
+--> TO READ JSON SENT FROM CLIENT SIDE:
+* Require json inside and at the top of the controller, then execute below:
+* res_body = JSON.parse(request.raw_post)
+
+
+--> TO READ INFORMATION PASSED DIRECTLY INSIDE THE API URL PASSED FROM CLIENT:
+* Example with this "DELETE" request:
+    fetch(`http://localhost:3000/api/v1/favorites/${movie_id}`, {method: "DELETE})
+* We can read the "movie_id" value in rails as is: params["id"]
