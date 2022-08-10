@@ -15,3 +15,15 @@ request.raw_post
 * Example with this "DELETE" request:
     fetch(`http://localhost:3000/api/v1/favorites/${movie_id}`, {method: "DELETE})
 * We can read the "movie_id" value in rails as is: params["id"]
+
+
+--> SEND DATA TO CLIENT AS JSON
+* WHEN SENDING DATA BACK TO THE CLIENT, ALWAYS TRANSFORM IT ONTO JSON
+* When sending data to the client, always transform it onto json first as demonstrated below:
+* favorite_list.to_json
+* Make sure to require "json" inside and at the top of the controller
+
+* To read the data fronm the client side do:
+  - Return the response as is: rreturn res.json()
+  - Then to be able tor read it, make sure to use:
+      JSON.parse(data) to be able tor ead it
