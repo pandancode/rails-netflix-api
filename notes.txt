@@ -18,6 +18,7 @@ request.raw_post
 
 
 --> SEND DATA TO CLIENT AS JSON
+==> https://dev.to/caicindy87/rendering-json-in-a-rails-api-25fd
 * WHEN SENDING DATA BACK TO THE CLIENT, ALWAYS TRANSFORM IT ONTO JSON
 * When sending data to the client, always transform it onto json first as demonstrated below:
 * favorite_list.to_json
@@ -27,3 +28,13 @@ request.raw_post
   - Return the response as is: rreturn res.json()
   - Then to be able tor read it, make sure to use:
       JSON.parse(data) to be able tor ead it
+
+
+
+
+
+
+
+
+
+    p "---------------------------------------------------"
