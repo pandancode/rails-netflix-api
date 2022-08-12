@@ -3,5 +3,5 @@ class Watchlist < ApplicationRecord
   has_many :watchlist_movies, dependent: :destroy
   has_many :movies, through: :watchlist_movies
 
-  # validates :name, uniqueness: true
+  validates :name, presence: true
 end

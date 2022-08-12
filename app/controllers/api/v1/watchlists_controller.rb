@@ -5,13 +5,13 @@ class Api::V1::WatchlistsController < ActionController::API
   # ! WE OPEN A FORM WHEN CLICKING ON CLOCK ICON + GATHER INFORMATION (NEW OR EXISTING LIST)
 
   def index
-    watchlists_movies = get_watchlist_array_with_name_and_movies
+    watchlists_movies = get_watchlist_array_with_name_and_movies # ? ALL WATCHLISTS FOR CURRENT USER
 
     render json: { message: "Here's the different watchlists for the user #{current_user.email}", watchlists: watchlists_movies.to_json }, status: :ok
   end
 
   def create
-    wl_name = params["name"]
+    wl_name = params["wl_name"]
     movie_id = params["movie_id"]
     movie = Movie.find(movie_id)
 
@@ -36,34 +36,32 @@ class Api::V1::WatchlistsController < ActionController::API
     render json: { message: "Here's the updated watchlists for the user #{current_user.email}", watchlists: watchlists_movies.to_json }, status: :ok
   end
 
-  def update
-  end
+  def destroy
+    movie_id = params["id"]
+    instance_to_delete = nil
 
-  def delete
-    wl_name = params["name"]
-    movie_id = params["movie_id"]
+   Watchlist.where(user_id: current_user.id).each do |wl|
+      if !wl.watchlist_movies.where(movie_id: movie_id).empty?
+        instance_to_delete = wl.watchlist_movies.where(movie_id: movie_id)[0]
+      end
+    end
 
-    watchlist = Watchlist.where(user_id: current_user.id).where(name: wl_name)[0]
-    instance_to_delete = WatchlistMovie.where(watchlist_id: watchlist.id).where(movie_id: movie_id)
+    watchlist = instance_to_delete.watchlist
     instance_to_delete.delete
 
     updated_watchlist = Watchlist.find(watchlist.id)
 
-    if updated_watchlist.empty?
+    if updated_watchlist.movies.empty?
       updated_watchlist.delete
       watchlist_movies = get_watchlist_array_with_name_and_movies
-      render json: { message: "The last entry for this watchlist has been deleted. Therefore the watchlist has completly been removed. ", watchlists: watchlists_movies.to_json }, status: :ok
+      render json: { message: "The last entry for this watchlist has been deleted. Therefore the watchlist has completly been removed. ", watchlists: watchlist_movies.to_json }, status: :ok
     else
       watchlist_movies = get_watchlist_array_with_name_and_movies
-      render json: { message: "Here's the updated watchlists for the user #{current_user.email}", watchlists: watchlists_movies.to_json }, status: :ok
+      render json: { message: "Here's the updated watchlists for the user #{current_user.email}", watchlists: watchlist_movies.to_json }, status: :ok
     end
   end
 
   private
-
-  # def watchlist_params
-  #    params.require(:watchlists).permit(:id, :name, :user_id)
-  # end
 
   def transform_collection_onto_hash(collection) # ? Starts with "#<Movie ... >"
     array_containing_hashes = []
