@@ -4,8 +4,8 @@
 
 # ! CREATING USERS
 p "Creating users"
-User.create(email: "test@test.com", password: "qqqqqq")
-User.create(email: "aminm-34@hotmail.fr", password: "qqqqqq")
+User.create(email: "test@test.com", password: "qqqqqq", username: "Tester")
+User.create(email: "aminm-34@hotmail.fr", password: "qqqqqq", username: "Focus-Me34")
 p "Finished creating users"
 
 # ! POPULAR MOVIES PULLED FROM THE TMDB DATABASE
@@ -1929,16 +1929,16 @@ Watchlist.create(user_id: 2, name: "Fantastic")
 
 # ! CREATING ENTRIES FOR THE WATCHLISTS
 p "Creating 4 entries for the watchlist 'Romance' (1) (User2)"
-WatchlistMovie.create(watchlist_id: 1, movie_id: 11)
-WatchlistMovie.create(watchlist_id: 1, movie_id: 22)
-WatchlistMovie.create(watchlist_id: 1, movie_id: 33)
-WatchlistMovie.create(watchlist_id: 1, movie_id: 44)
+WatchlistMovie.create(watchlist_id: 3, movie_id: 11)
+WatchlistMovie.create(watchlist_id: 3, movie_id: 22)
+WatchlistMovie.create(watchlist_id: 3, movie_id: 33)
+WatchlistMovie.create(watchlist_id: 3, movie_id: 44)
 
 p "Creating 4 entries for the watchlist 'Fantastic' (2) (User2)"
-WatchlistMovie.create(watchlist_id: 2, movie_id: 55)
-WatchlistMovie.create(watchlist_id: 2, movie_id: 66)
-WatchlistMovie.create(watchlist_id: 2, movie_id: 77)
-WatchlistMovie.create(watchlist_id: 2, movie_id: 88)
+WatchlistMovie.create(watchlist_id: 4, movie_id: 55)
+WatchlistMovie.create(watchlist_id: 4, movie_id: 66)
+WatchlistMovie.create(watchlist_id: 4, movie_id: 77)
+WatchlistMovie.create(watchlist_id: 4, movie_id: 88)
 
 # ! ---------------------------------------------------
 
