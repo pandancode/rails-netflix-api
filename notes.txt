@@ -24,7 +24,7 @@ request.raw_post
 * favorite_list.to_json
 * Make sure to require "json" inside and at the top of the controller
 
-* To read the data fronm the client side do:
+* To read the data from the client side do:
   - Return the response as is: rreturn res.json()
   - Then to be able tor read it, make sure to use:
       JSON.parse(data) to be able tor ead it
@@ -37,4 +37,5 @@ request.raw_post
 
 
 
-    p "---------------------------------------------------"
+
+p "---------------------------------------------------"

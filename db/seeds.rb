@@ -1895,22 +1895,50 @@ movies.each do |movie|
 end
 p "Finished creating movies"
 
+# ! ---------------------------------------------------
 
-# ! CREATING WATCHLISTS
+
+# ! CREATING WATCHLISTS USER 1
 p "Creating Watchlist 'horror' for user 1"
-Watchlist.create(user_id: 1, name: :"Horror")
+Watchlist.create(user_id: 1, name: "Horror")
 
 p "Creating Watchlist 'action' for user 1"
-Watchlist.create(user_id: 1, name: :"Action")
-
+Watchlist.create(user_id: 1, name: "Action")
 
 # ! CREATING ENTRIES FOR THE WATCHLISTS
-p "Creating 2 entries for the watchlist 'Horror' (User1)"
+p "Creating 4 entries for the watchlist 'Horror' (1) (User1)"
 WatchlistMovie.create(watchlist_id: 1, movie_id: 1)
 WatchlistMovie.create(watchlist_id: 1, movie_id: 5)
+WatchlistMovie.create(watchlist_id: 1, movie_id: 10)
+WatchlistMovie.create(watchlist_id: 1, movie_id: 20)
 
-p "Creating 1 entries for the watchlist 'Action' (User1)"
-WatchlistMovie.create(watchlist_id: 2, movie_id: 10)
+p "Creating 4 entries for the watchlist 'Action' (2) (User1)"
+WatchlistMovie.create(watchlist_id: 2, movie_id: 6)
+WatchlistMovie.create(watchlist_id: 2, movie_id: 11)
+WatchlistMovie.create(watchlist_id: 2, movie_id: 21)
+WatchlistMovie.create(watchlist_id: 2, movie_id: 45)
+
+# ! ---------------------------------------------------
+
+# ! CREATING WATCHLISTS USER 2
+p "Creating Watchlist 'horror' for user 1"
+Watchlist.create(user_id: 2, name: "Romance")
+
+p "Creating Watchlist 'action' for user 1"
+Watchlist.create(user_id: 2, name: "Fantastic")
+
+# ! CREATING ENTRIES FOR THE WATCHLISTS
+p "Creating 4 entries for the watchlist 'Romance' (1) (User2)"
+WatchlistMovie.create(watchlist_id: 1, movie_id: 11)
+WatchlistMovie.create(watchlist_id: 1, movie_id: 22)
+WatchlistMovie.create(watchlist_id: 1, movie_id: 33)
+WatchlistMovie.create(watchlist_id: 1, movie_id: 44)
+
+p "Creating 4 entries for the watchlist 'Fantastic' (2) (User2)"
+WatchlistMovie.create(watchlist_id: 2, movie_id: 55)
+WatchlistMovie.create(watchlist_id: 2, movie_id: 66)
+WatchlistMovie.create(watchlist_id: 2, movie_id: 77)
+WatchlistMovie.create(watchlist_id: 2, movie_id: 88)
 
 
 # const MOVIES_LIST = [

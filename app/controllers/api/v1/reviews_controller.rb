@@ -1,5 +1,7 @@
-class Api::V1::WatchlistMoviesController < ActionController::API
+class API::V1::ReviewsController < ActionController::API
   before_action :authenticate_user!
+  def index
+  end
 
   def create
   end
