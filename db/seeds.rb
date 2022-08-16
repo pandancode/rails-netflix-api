@@ -1944,13 +1944,13 @@ WatchlistMovie.create(watchlist_id: 4, movie_id: 88)
 
 # ! CREATING REVIEWS FOR USER 1
 
-Review.create(user_id: 1, watchlist_id: 3, comment: "This watchlist looks shitty as fuck ...", )
-Review.create(user_id: 1, watchlist_id: 4, comment: "This is Amazing ! Love it !", )
+Review.create(user_id: 1, username: User.first.username, watchlist_id: 3, comment: "This watchlist looks shitty as fuck ...", )
+Review.create(user_id: 1, username: User.first.username, watchlist_id: 4, comment: "This is Amazing ! Love it !", )
 
 # ! CREATING REVIEWS FOR USER 2
 
-Review.create(user_id: 2, watchlist_id: 1, comment: "Will definitly shit my pant watching those...", )
-Review.create(user_id: 2, watchlist_id: 2, comment: "Obviously will be boring af...", )
+Review.create(user_id: 2, username: User.second.username, watchlist_id: 1, comment: "Will definitly shit my pant watching those...", )
+Review.create(user_id: 2, username: User.second.username, watchlist_id: 2, comment: "Obviously will be boring af...", )
 
 # const MOVIES_LIST = [
 #   { id: 1, title: "Thor: Love and Thunder", synopsis: "Thor enlists the help of Valkyrie, Korg and ex-girlfriend Jane Foster to fight Gorr the God Butcher, who intends to make the gods extinct.", img_url: "https://m.media-amazon.com/images/M/MV5BYmMxZWRiMTgtZjM0Ny00NDQxLWIxYWQtZDdlNDNkOTEzYTdlXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg", trailer_url: "https://imdb-video.media-imdb.com/vi1613808153/1434659607842-pgv4ql-1656941657492.mp4?Expires=1659101898&Signature=FcQu0v3H26gLEPedswQcuvNpfdoXvWLAODrmY~sPVrD9WlNLdwnd12ZH7a-768qZq-fHgG6a5VDtNLvOXCb27nyZ~7XjkwvCvo9qJjNmPEUL-nf9ifAQDIrTsSxKDzeSBZB~iDvT1AHW7oafBSoXwOOI3C9CL4VM6AjM4J1Z7on2fgxQ-xvXqwWEqbtzq2j~egmNNjFu8XEc0k~c~ycA4uvgNhubwUgxP6CQ3uy3hhgh5OTfCFWovJMcvivCJTeIhd~pJM702Zb8e9x1CIyJWp6uM2e0qoHTidssnV33CgiEMY4opgHTLAdrdREl4i102DHrLmbyV070E11GUFK6vA__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA" },

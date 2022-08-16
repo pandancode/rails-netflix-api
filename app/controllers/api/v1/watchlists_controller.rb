@@ -15,12 +15,12 @@ class Api::V1::WatchlistsController < ActionController::API
     watchlist_reviews = watchlist.reviews
     watchlist_movies = watchlist.movies
     creator = watchlist.user.username
-    p creator
+    reviews = watchlist.reviews
 
     if watchlist
-      render json: {message: "Here's more information for the watchlist with id #{params["watchlist_id"]}", watchlist: watchlist.to_json, reviews: watchlist_reviews.to_json, movies: watchlist_movies.to_json, watchlist_creator: creator.to_json }, status: :ok
+      render json: { message: "Here's more information for the watchlist with id #{params["watchlist_id"]}", watchlist: watchlist.to_json, reviews: watchlist_reviews.to_json, movies: watchlist_movies.to_json, watchlist_creator: creator.to_json }, status: :ok
     else
-      render json: {message: "Couldn't find watchlist with id #{params["watchlist_id"]}"}, status: :unprocessable_entity
+      render json: { message: "Couldn't find watchlist with id #{params["watchlist_id"]}"}, status: :unprocessable_entity
     end
   end
 

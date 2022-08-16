@@ -49,6 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_15_103959) do
 
   create_table "reviews", force: :cascade do |t|
     t.text "comment"
+    t.string "username"
     t.integer "like_counter", default: 0
     t.bigint "user_id", null: false
     t.bigint "watchlist_id", null: false
