@@ -1,0 +1,7 @@
+- Create reviews model
+- Set validation
+- Think about routes + generate them
+- Update seed ?
+- Generate controller
+- Code the actions
+- React part

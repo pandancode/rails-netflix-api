@@ -1,5 +1,5 @@
 class Api::V1::WatchlistMoviesController < ActionController::API
-  before_action :authenticate_user!, except: [ :index ]
+  before_action :authenticate_user!
 
   def create
   end

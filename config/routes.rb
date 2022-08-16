@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'reviews/index'
+  get 'reviews/create'
+  get 'reviews/update'
+  get 'reviews/delete'
   get 'watchlist_movies/create'
   get 'watchlist_movies/update'
   get 'watchlist_movies/delete'
@@ -14,6 +18,7 @@ Rails.application.routes.draw do
       resources :movies, only: [ :index ]
       resources :favorites, only: [ :index, :create, :destroy ]
       resources :watchlists
+      resources :reviews, only: [ :index, :create, :update, :destroy ]
     end
   end
 

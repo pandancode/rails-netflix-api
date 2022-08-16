@@ -5,9 +5,23 @@ class Api::V1::WatchlistsController < ActionController::API
   # ! WE OPEN A FORM WHEN CLICKING ON CLOCK ICON + GATHER INFORMATION (NEW OR EXISTING LIST)
 
   def index
-    watchlists_movies = get_watchlist_array_with_name_and_movies # ? ALL WATCHLISTS FOR CURRENT USER
+    watchlists_movies = get_watchlist_array_with_name_and_movies # ? ALL WATCHLISTS (NOT ONLY CURRENT USER)
 
-    render json: { message: "Here's the different watchlists for the user #{current_user.email}", watchlists: watchlists_movies.to_json }, status: :ok
+    render json: { message: "Here are all the watchlists ever created", watchlists: watchlists_movies.to_json }, status: :ok
+  end
+
+  def show
+    watchlist = Watchlist.find(params["id"])
+    watchlist_reviews = watchlist.reviews
+    watchlist_movies = watchlist.movies
+    creator = watchlist.user.username
+    p creator
+
+    if watchlist
+      render json: {message: "Here's more information for the watchlist with id #{params["watchlist_id"]}", watchlist: watchlist.to_json, reviews: watchlist_reviews.to_json, movies: watchlist_movies.to_json, watchlist_creator: creator.to_json }, status: :ok
+    else
+      render json: {message: "Couldn't find watchlist with id #{params["watchlist_id"]}"}, status: :unprocessable_entity
+    end
   end
 
   def create
@@ -93,11 +107,12 @@ class Api::V1::WatchlistsController < ActionController::API
   def get_watchlist_array_with_name_and_movies
     watchlists_movies = []
 
-    current_user.watchlists.each do |wl|
+    Watchlist.all.each do |wl|
       wl_name = wl.name
       wl_movies = transform_collection_onto_hash(wl.movies)
+      wl_user = wl.user.username
 
-      watchlists_movies.push({id: wl.id, name: wl_name, movies: wl_movies})
+      watchlists_movies.push({id: wl.id, name: wl_name, movies: wl_movies, created_by: wl_user })
     end
 
     watchlists_movies

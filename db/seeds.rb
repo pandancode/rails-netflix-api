@@ -4,8 +4,8 @@
 
 # ! CREATING USERS
 p "Creating users"
-User.create(email: "test@test.com", password: "qqqqqq")
-User.create(email: "aminm-34@hotmail.fr", password: "qqqqqq")
+User.create(email: "test@test.com", password: "qqqqqq", username: "Tester")
+User.create(email: "aminm-34@hotmail.fr", password: "qqqqqq", username: "Focus-Me34")
 p "Finished creating users"
 
 # ! POPULAR MOVIES PULLED FROM THE TMDB DATABASE
@@ -1895,23 +1895,62 @@ movies.each do |movie|
 end
 p "Finished creating movies"
 
+# ! ---------------------------------------------------
 
-# ! CREATING WATCHLISTS
+
+# ! CREATING WATCHLISTS USER 1
 p "Creating Watchlist 'horror' for user 1"
-Watchlist.create(user_id: 1, name: :"Horror")
+Watchlist.create(user_id: 1, name: "Horror")
 
 p "Creating Watchlist 'action' for user 1"
-Watchlist.create(user_id: 1, name: :"Action")
-
+Watchlist.create(user_id: 1, name: "Action")
 
 # ! CREATING ENTRIES FOR THE WATCHLISTS
-p "Creating 2 entries for the watchlist 'Horror' (User1)"
+p "Creating 4 entries for the watchlist 'Horror' (1) (User1)"
 WatchlistMovie.create(watchlist_id: 1, movie_id: 1)
 WatchlistMovie.create(watchlist_id: 1, movie_id: 5)
+WatchlistMovie.create(watchlist_id: 1, movie_id: 10)
+WatchlistMovie.create(watchlist_id: 1, movie_id: 20)
 
-p "Creating 1 entries for the watchlist 'Action' (User1)"
-WatchlistMovie.create(watchlist_id: 2, movie_id: 10)
+p "Creating 4 entries for the watchlist 'Action' (2) (User1)"
+WatchlistMovie.create(watchlist_id: 2, movie_id: 6)
+WatchlistMovie.create(watchlist_id: 2, movie_id: 11)
+WatchlistMovie.create(watchlist_id: 2, movie_id: 21)
+WatchlistMovie.create(watchlist_id: 2, movie_id: 45)
 
+# ! ---------------------------------------------------
+
+# ! CREATING WATCHLISTS USER 2
+p "Creating Watchlist 'horror' for user 1"
+Watchlist.create(user_id: 2, name: "Romance")
+
+p "Creating Watchlist 'action' for user 1"
+Watchlist.create(user_id: 2, name: "Fantastic")
+
+# ! CREATING ENTRIES FOR THE WATCHLISTS
+p "Creating 4 entries for the watchlist 'Romance' (1) (User2)"
+WatchlistMovie.create(watchlist_id: 3, movie_id: 11)
+WatchlistMovie.create(watchlist_id: 3, movie_id: 22)
+WatchlistMovie.create(watchlist_id: 3, movie_id: 33)
+WatchlistMovie.create(watchlist_id: 3, movie_id: 44)
+
+p "Creating 4 entries for the watchlist 'Fantastic' (2) (User2)"
+WatchlistMovie.create(watchlist_id: 4, movie_id: 55)
+WatchlistMovie.create(watchlist_id: 4, movie_id: 66)
+WatchlistMovie.create(watchlist_id: 4, movie_id: 77)
+WatchlistMovie.create(watchlist_id: 4, movie_id: 88)
+
+# ! ---------------------------------------------------
+
+# ! CREATING REVIEWS FOR USER 1
+
+Review.create(user_id: 1, watchlist_id: 3, comment: "This watchlist looks shitty as fuck ...", )
+Review.create(user_id: 1, watchlist_id: 4, comment: "This is Amazing ! Love it !", )
+
+# ! CREATING REVIEWS FOR USER 2
+
+Review.create(user_id: 2, watchlist_id: 1, comment: "Will definitly shit my pant watching those...", )
+Review.create(user_id: 2, watchlist_id: 2, comment: "Obviously will be boring af...", )
 
 # const MOVIES_LIST = [
 #   { id: 1, title: "Thor: Love and Thunder", synopsis: "Thor enlists the help of Valkyrie, Korg and ex-girlfriend Jane Foster to fight Gorr the God Butcher, who intends to make the gods extinct.", img_url: "https://m.media-amazon.com/images/M/MV5BYmMxZWRiMTgtZjM0Ny00NDQxLWIxYWQtZDdlNDNkOTEzYTdlXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg", trailer_url: "https://imdb-video.media-imdb.com/vi1613808153/1434659607842-pgv4ql-1656941657492.mp4?Expires=1659101898&Signature=FcQu0v3H26gLEPedswQcuvNpfdoXvWLAODrmY~sPVrD9WlNLdwnd12ZH7a-768qZq-fHgG6a5VDtNLvOXCb27nyZ~7XjkwvCvo9qJjNmPEUL-nf9ifAQDIrTsSxKDzeSBZB~iDvT1AHW7oafBSoXwOOI3C9CL4VM6AjM4J1Z7on2fgxQ-xvXqwWEqbtzq2j~egmNNjFu8XEc0k~c~ycA4uvgNhubwUgxP6CQ3uy3hhgh5OTfCFWovJMcvivCJTeIhd~pJM702Zb8e9x1CIyJWp6uM2e0qoHTidssnV33CgiEMY4opgHTLAdrdREl4i102DHrLmbyV070E11GUFK6vA__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA" },
