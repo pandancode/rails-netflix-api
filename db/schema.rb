@@ -30,19 +30,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_15_103959) do
   end
 
   create_table "movies", force: :cascade do |t|
-    t.boolean "adult"
-    t.text "backdrop_path"
-    t.integer "genre_ids"
-    t.string "original_language"
-    t.string "original_title"
-    t.text "synopsis"
-    t.float "popularity"
-    t.text "poster_path"
-    t.string "release_date"
     t.string "title"
-    t.boolean "video"
-    t.float "vote_average"
-    t.integer "vote_count"
+    t.text "synopsis"
+    t.text "img_url"
+    t.text "trailer_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -63,8 +54,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_15_103959) do
     t.string "first_name"
     t.string "middle_names"
     t.string "last_name"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_details_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -73,7 +66,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_15_103959) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at", precision: nil
     t.datetime "remember_created_at", precision: nil
-    t.string "username", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -101,6 +93,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_15_103959) do
   add_foreign_key "favorites", "users"
   add_foreign_key "reviews", "users"
   add_foreign_key "reviews", "watchlists"
+  add_foreign_key "user_details", "users"
   add_foreign_key "watchlist_movies", "movies"
   add_foreign_key "watchlist_movies", "watchlists"
   add_foreign_key "watchlists", "users"
