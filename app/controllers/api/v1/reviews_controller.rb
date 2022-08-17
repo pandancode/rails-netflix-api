@@ -7,7 +7,7 @@ class API::V1::ReviewsController < ActionController::API
   end
 
   def create
-    review = Review.new(user_id: current_user.id, watchlist_id: params["watchlist_id"])
+    review = Review.new(user_id: current_user.id, username: current_user.username ,watchlist_id: params["watchlist_id"])
 
     if review.save
       render json: { message: "Your review have been added successfully for the watchlist with id #{params["watchlist_id"]}", review: Review.last}, status: :ok

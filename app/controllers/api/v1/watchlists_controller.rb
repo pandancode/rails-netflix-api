@@ -15,12 +15,12 @@ class Api::V1::WatchlistsController < ActionController::API
     watchlist_reviews = watchlist.reviews
     watchlist_movies = watchlist.movies
     creator = watchlist.user.username
-    p creator
+    reviews = watchlist.reviews
 
     if watchlist
-      render json: {message: "Here's more information for the watchlist with id #{params["watchlist_id"]}", watchlist: watchlist.to_json, reviews: watchlist_reviews.to_json, movies: watchlist_movies.to_json, watchlist_creator: creator.to_json }, status: :ok
+      render json: { message: "Here's more information for the watchlist with id #{params["watchlist_id"]}", watchlist: watchlist.to_json, reviews: watchlist_reviews.to_json, movies: watchlist_movies.to_json, watchlist_creator: creator.to_json }, status: :ok
     else
-      render json: {message: "Couldn't find watchlist with id #{params["watchlist_id"]}"}, status: :unprocessable_entity
+      render json: { message: "Couldn't find watchlist with id #{params["watchlist_id"]}"}, status: :unprocessable_entity
     end
   end
 
@@ -55,19 +55,25 @@ class Api::V1::WatchlistsController < ActionController::API
     instance_to_delete = nil
 
    Watchlist.where(user_id: current_user.id).each do |wl|
+    # ? IF WE FIND THE PASSED MOVIE IN ONE THE USER WATCHLISTS, WE'LL DELETE IT
       if !wl.watchlist_movies.where(movie_id: movie_id).empty?
         instance_to_delete = wl.watchlist_movies.where(movie_id: movie_id)[0]
       end
     end
 
+    # ? WE FIND THE WATCHLIST TO DELETE BY GOING UP ONE LEVEL FRON THE WATCHLIST-MOVIE INSTANCE
     watchlist = instance_to_delete.watchlist
     instance_to_delete.delete
 
+    # ? HERE WE MAKE SURE WE HAVE THE LATEST SNAPSHOT OF THE WATCHLIST
     updated_watchlist = Watchlist.find(watchlist.id)
 
     if updated_watchlist.movies.empty?
+      # ? WE DELETE ALL ASSOCIATED REVIEWS FOR THE WATCHLIST (GOOD BEHAVIOUR?)
+      updated_watchlist.reviews.delete_all
       updated_watchlist.delete
       watchlist_movies = get_watchlist_array_with_name_and_movies
+      # ? WE RETURN THE UPDATED WATCHLISTSTED MOVIES FOR THE CURRENT USER
       render json: { message: "The last entry for this watchlist has been deleted. Therefore the watchlist has completly been removed. ", watchlists: watchlist_movies.to_json }, status: :ok
     else
       watchlist_movies = get_watchlist_array_with_name_and_movies
@@ -110,9 +116,9 @@ class Api::V1::WatchlistsController < ActionController::API
     Watchlist.all.each do |wl|
       wl_name = wl.name
       wl_movies = transform_collection_onto_hash(wl.movies)
-      wl_user = wl.user.username
+      wl_username = wl.user.username
 
-      watchlists_movies.push({id: wl.id, name: wl_name, movies: wl_movies, created_by: wl_user })
+      watchlists_movies.push({id: wl.id, user_id: wl.user.id ,name: wl_name, movies: wl_movies, created_by: wl_username })
     end
 
     watchlists_movies
